@@ -108,6 +108,13 @@ a pose on `/initialpose`.
 | `f1tenth/f1tenth_gym` | `dev-jax` | `ec3b1a4693ed20317e42e57a9454d94b824cec81` |
 | Waterloo Pure Pursuit source | `main` | `c20cf63d04b9841ffdb6b2f963bd737d78074136` |
 
+## Official simulator reference
+
+This starter workspace uses the official
+[F1TENTH Gym ROS repository (`dev-jazzy` branch)](https://github.com/f1tenth/f1tenth_gym_ros/tree/dev-jazzy).
+The setup script clones that repository and checks out the tested revision listed
+above so every student uses the same simulator version.
+
 ## Repository layout
 
 ```text
