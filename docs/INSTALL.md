@@ -5,7 +5,7 @@ competition starter workspace.
 
 ## 1. Supported system
 
-- Ubuntu 24.04 LTS, x86_64
+- Ubuntu 24.04.5 LTS, x86_64
 - ROS 2 Jazzy
 - Bash shell
 - Native installation, not Docker
@@ -21,15 +21,7 @@ locale
 A UTF-8 locale is required. An empty `LC_ALL` is normal when categories inherit
 from `LANG`.
 
-## 2. Update Ubuntu
-
-```bash
-sudo apt update
-sudo apt upgrade -y
-sudo reboot
-```
-
-## 3. Install all system prerequisites
+## 2. Install all system prerequisites
 
 Install the Ubuntu packages required to add the ROS repository, clone and build
 the workspace, and create the Python virtual environment:
@@ -62,7 +54,7 @@ locale
 `LANG=en_US.UTF-8` is expected. An empty `LC_ALL` is also valid when locale
 categories inherit from `LANG`.
 
-## 4. Install ROS 2 Jazzy
+## 3. Install ROS 2 Jazzy
 
 Enable Universe and install the ROS apt-source helper:
 
@@ -117,7 +109,7 @@ Ackermann messages, Nav2 map server, robot state publisher, Eigen, RViz, and
 the Foxglove bridge. The setup script also creates the virtual environment and
 installs the pinned Python simulator dependencies inside it.
 
-## 5. Verify prerequisites
+## 4. Verify prerequisites
 
 ```bash
 git --version
@@ -130,14 +122,14 @@ test -f /opt/ros/jazzy/setup.bash && echo "ROS 2 Jazzy: OK"
 
 If all commands finish without an error, continue with the repository setup.
 
-## 6. Clone this repository
+## 5. Clone this repository
 
 ```bash
 git clone https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
 cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 ```
 
-## 7. Set up and build
+## 6. Set up and build
 
 ```bash
 ./scripts/setup_workspace.sh
@@ -153,7 +145,7 @@ The script:
 6. resolves ROS dependencies with rosdep;
 7. builds the workspace through the virtual-environment Python interpreter.
 
-## 8. Launch
+## 7. Launch
 
 Simulator:
 
@@ -169,7 +161,7 @@ Pure Pursuit, in another terminal:
 
 The controller starts moving the car immediately.
 
-## 9. Validate topics
+## 8. Validate topics
 
 With the simulator running:
 
@@ -192,7 +184,7 @@ Expected:
 - `/drive`: one simulator subscriber;
 - when Pure Pursuit runs, `/drive` also has one publisher.
 
-## 10. RViz
+## 9. RViz
 
 ```bash
 source /opt/ros/jazzy/setup.bash
@@ -211,7 +203,7 @@ active samplers with a different type refer to the same texture image unit
 It is non-blocking when the map, vehicle, and LiDAR remain visible and RViz
 continues running.
 
-## 11. Foxglove
+## 10. Foxglove
 
 Connect <https://app.foxglove.dev> to:
 
