@@ -11,6 +11,15 @@ GYM_REPO="$ROS_REPO/f1tenth_gym"
 ROS_COMMIT="2c019810b4098ed82d44cad1d7d282a2dfc12421"
 GYM_COMMIT="ec3b1a4693ed20317e42e57a9454d94b824cec81"
 
+# ROS and colcon-generated setup files may read variables before defining them.
+# Temporarily disable Bash nounset while sourcing those trusted environment files.
+source_environment() {
+  set +u
+  # shellcheck disable=SC1090
+  source "$1"
+  set -u
+}
+
 if [[ ! -f "$ROS_SETUP" ]]; then
   echo "ROS 2 Jazzy was not found at $ROS_SETUP."
   echo "Follow docs/INSTALL.md before running this script."
@@ -22,7 +31,7 @@ if [[ "$(uname -m)" != "x86_64" ]]; then
   exit 1
 fi
 
-source "$ROS_SETUP"
+source_environment "$ROS_SETUP"
 mkdir -p "$WS/src"
 
 if [[ ! -d "$ROS_REPO/.git" ]]; then
@@ -53,7 +62,7 @@ if [[ ! -d "$WS/.venv" ]]; then
   python3 -m venv --system-site-packages "$WS/.venv"
 fi
 
-source "$WS/.venv/bin/activate"
+source_environment "$WS/.venv/bin/activate"
 
 python -m pip install --upgrade pip wheel
 python -m pip install 'setuptools==79.0.1'
@@ -71,7 +80,7 @@ rosdep install   --from-paths "$WS/src"   --ignore-src   --rosdistro jazzy   -r 
 
 cd "$WS"
 python /usr/bin/colcon build --symlink-install
-source "$WS/install/setup.bash"
+source_environment "$WS/install/setup.bash"
 
 ros2 pkg prefix f1tenth_gym_ros
 ros2 pkg prefix pure_pursuit
