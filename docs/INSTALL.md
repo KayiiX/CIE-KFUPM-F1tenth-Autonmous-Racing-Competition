@@ -29,12 +29,44 @@ sudo apt upgrade -y
 sudo reboot
 ```
 
-## 3. Install ROS 2 Jazzy
+## 3. Install all system prerequisites
+
+Install the Ubuntu packages required to add the ROS repository, clone and build
+the workspace, and create the Python virtual environment:
+
+```bash
+sudo apt update
+sudo apt install -y \
+  locales \
+  software-properties-common \
+  curl \
+  ca-certificates \
+  git \
+  build-essential \
+  pkg-config \
+  python3 \
+  python3-dev \
+  python3-pip \
+  python3-venv
+```
+
+Configure a UTF-8 locale if the machine does not already use one:
+
+```bash
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+locale
+```
+
+`LANG=en_US.UTF-8` is expected. An empty `LC_ALL` is also valid when locale
+categories inherit from `LANG`.
+
+## 4. Install ROS 2 Jazzy
 
 Enable Universe and install the ROS apt-source helper:
 
 ```bash
-sudo apt install software-properties-common curl -y
 sudo add-apt-repository universe
 sudo apt update
 
@@ -48,10 +80,10 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-Install ROS, development tools, Git, and virtual-environment support:
+Install ROS 2 Desktop and its development tools:
 
 ```bash
-sudo apt install ros-jazzy-desktop ros-dev-tools git python3-venv -y
+sudo apt install -y ros-jazzy-desktop ros-dev-tools
 ```
 
 Load and verify ROS:
@@ -79,14 +111,33 @@ rosdep update
 If rosdep reports that `20-default.list` already exists, continue with
 `rosdep update`.
 
-## 4. Clone this repository
+At this point, the manually installed prerequisites are complete. During
+workspace setup, `rosdep` installs package-level dependencies such as
+Ackermann messages, Nav2 map server, robot state publisher, Eigen, RViz, and
+the Foxglove bridge. The setup script also creates the virtual environment and
+installs the pinned Python simulator dependencies inside it.
+
+## 5. Verify prerequisites
 
 ```bash
-git clone https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonmous-Racing-Competition.git
-cd CIE-KFUPM-F1tenth-Autonmous-Racing-Competition
+git --version
+python3 --version
+python3 -m venv --help >/dev/null && echo "python3-venv: OK"
+rosdep --version
+colcon --help >/dev/null && echo "colcon: OK"
+test -f /opt/ros/jazzy/setup.bash && echo "ROS 2 Jazzy: OK"
 ```
 
-## 5. Set up and build
+If all commands finish without an error, continue with the repository setup.
+
+## 6. Clone this repository
+
+```bash
+git clone https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
+cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
+```
+
+## 7. Set up and build
 
 ```bash
 ./scripts/setup_workspace.sh
@@ -102,7 +153,7 @@ The script:
 6. resolves ROS dependencies with rosdep;
 7. builds the workspace through the virtual-environment Python interpreter.
 
-## 6. Launch
+## 8. Launch
 
 Simulator:
 
@@ -118,7 +169,7 @@ Pure Pursuit, in another terminal:
 
 The controller starts moving the car immediately.
 
-## 7. Validate topics
+## 9. Validate topics
 
 With the simulator running:
 
@@ -141,7 +192,7 @@ Expected:
 - `/drive`: one simulator subscriber;
 - when Pure Pursuit runs, `/drive` also has one publisher.
 
-## 8. RViz
+## 10. RViz
 
 ```bash
 source /opt/ros/jazzy/setup.bash
@@ -160,7 +211,7 @@ active samplers with a different type refer to the same texture image unit
 It is non-blocking when the map, vehicle, and LiDAR remain visible and RViz
 continues running.
 
-## 9. Foxglove
+## 11. Foxglove
 
 Connect <https://app.foxglove.dev> to:
 

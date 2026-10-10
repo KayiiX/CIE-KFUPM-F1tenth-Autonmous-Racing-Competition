@@ -29,8 +29,8 @@ First install ROS 2 Jazzy Desktop and the prerequisites in
 [docs/INSTALL.md](docs/INSTALL.md). Then:
 
 ```bash
-git clone https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonmous-Racing-Competition.git
-cd CIE-KFUPM-F1tenth-Autonmous-Racing-Competition
+git clone https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
+cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 
 ./scripts/setup_workspace.sh
 ```
