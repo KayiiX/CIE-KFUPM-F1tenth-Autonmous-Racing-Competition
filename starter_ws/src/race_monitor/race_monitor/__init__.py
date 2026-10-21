@@ -1,0 +1,1 @@
+"""Competition race monitor package."""

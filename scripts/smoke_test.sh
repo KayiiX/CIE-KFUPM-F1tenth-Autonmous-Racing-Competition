@@ -34,16 +34,26 @@ require_topic() {
 
 require_node /bridge
 require_node /map_server
+require_node /race_monitor
+require_node /rviz2
 require_topic /scan
 require_topic /ego_racecar/odom
 require_topic /drive
 require_topic /map
 require_topic /tf
 require_topic /tf_static
+require_topic /ego_racecar/lap_count
+require_topic /ego_racecar/lap_time
+require_topic /competition/current_lap_time
+require_topic /competition/last_lap_time
+require_topic /competition/best_lap_time
+require_topic /competition/lap_count
+require_topic /competition/race_status
 
 echo "Core nodes and topics are present."
 echo
 ros2 topic info /scan
 ros2 topic info /ego_racecar/odom
 ros2 topic info /drive
-
+ros2 topic echo /competition/race_status --once
+ros2 topic echo /competition/lap_count --once

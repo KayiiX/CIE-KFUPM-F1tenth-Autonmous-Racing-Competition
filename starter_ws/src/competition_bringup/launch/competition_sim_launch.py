@@ -9,6 +9,8 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     simulator_share = get_package_share_directory("f1tenth_gym_ros")
+    bringup_share = get_package_share_directory("competition_bringup")
+    monitor_share = get_package_share_directory("race_monitor")
 
     simulator = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -27,18 +29,26 @@ def generate_launch_description():
         arguments=[
             "-d",
             os.path.join(
-                simulator_share,
+                bringup_share,
                 "config",
-                "rviz",
-                "gym_bridge.rviz",
+                "competition.rviz",
             ),
         ],
+        output="screen",
+    )
+
+    race_monitor = Node(
+        package="race_monitor",
+        executable="race_monitor",
+        name="race_monitor",
+        parameters=[os.path.join(monitor_share, "config", "levine.yaml")],
         output="screen",
     )
 
     return LaunchDescription(
         [
             simulator,
+            race_monitor,
             rviz,
         ]
     )

@@ -152,9 +152,11 @@ Simulator:
 ./scripts/launch_sim.sh
 ```
 
-RViz opens automatically with the competition simulator. The Foxglove bridge
-also runs in the background and remains available at `ws://localhost:8765`, but
-the browser is not opened automatically.
+RViz opens automatically with the competition simulator and shows a race-status
+label near the car. The first finish-line crossing is an out-lap; it starts the
+live stopwatch, and the next crossing completes lap 1. The Foxglove bridge also
+runs in the background and remains available at `ws://localhost:8765`, but the
+browser is not opened automatically.
 
 Pure Pursuit, in another terminal:
 
@@ -187,7 +189,30 @@ Expected:
 - `/drive`: one simulator subscriber;
 - when Pure Pursuit runs, `/drive` also has one publisher.
 
-## 9. RViz
+## 9. Validate lap timing
+
+The simulator publishes authoritative completed-lap data. The competition race
+monitor adds a live stopwatch, best time, and session history:
+
+```bash
+ros2 topic echo /competition/race_status
+ros2 topic echo /competition/current_lap_time
+ros2 topic echo /competition/lap_count
+ros2 topic echo /competition/last_lap_time
+ros2 topic echo /competition/best_lap_time
+ros2 topic echo /competition/lap_history
+```
+
+Expected sequence:
+
+1. `OUT_LAP` after startup;
+2. `RACING` after the first finish-line crossing;
+3. `/competition/lap_count` becomes `1` after the next crossing;
+4. last, best, and history receive the simulator's completed-lap time.
+
+Using RViz **2D Pose Estimate** resets the timing session along with the car.
+
+## 10. RViz
 
 The normal simulator launch starts RViz automatically. To restart RViz
 manually while the simulator is still running:
@@ -197,7 +222,7 @@ source /opt/ros/jazzy/setup.bash
 source starter_ws/.venv/bin/activate
 source starter_ws/install/setup.bash
 
-rviz2 -d starter_ws/src/f1tenth_gym_ros/config/rviz/gym_bridge.rviz
+rviz2 -d starter_ws/src/competition_bringup/config/competition.rviz
 ```
 
 A message containing the following can appear when the map first renders:
@@ -209,7 +234,7 @@ active samplers with a different type refer to the same texture image unit
 It is non-blocking when the map, vehicle, and LiDAR remain visible and RViz
 continues running.
 
-## 10. Foxglove
+## 11. Foxglove
 
 Connect <https://app.foxglove.dev> to:
 
@@ -282,4 +307,3 @@ source starter_ws/.venv/bin/activate
 python -m pip install --upgrade cffi
 python -m pip check
 ```
-

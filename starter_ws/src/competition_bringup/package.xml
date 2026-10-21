@@ -13,6 +13,7 @@
   <exec_depend>f1tenth_gym_ros</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
+  <exec_depend>race_monitor</exec_depend>
   <exec_depend>rviz2</exec_depend>
 
   <export>

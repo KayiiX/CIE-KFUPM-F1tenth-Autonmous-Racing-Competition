@@ -8,6 +8,7 @@ This repository gives students:
 - a validated Ubuntu 24.04 and ROS 2 Jazzy simulator setup;
 - pinned F1TENTH simulator revisions;
 - RViz and Foxglove visualization instructions;
+- a live lap timer, completed-lap counter, best time, and lap history;
 - a conservative Pure Pursuit controller for the Levine map;
 - repeatable setup, launch, stop, and smoke-test commands.
 
@@ -41,7 +42,8 @@ cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 ./scripts/launch_sim.sh
 ```
 
-RViz opens automatically with the map, vehicle, and LiDAR configuration.
+RViz opens automatically with the map, vehicle, LiDAR, and race-status display.
+The first finish-line crossing completes the out-lap and starts the live timer.
 
 Foxglove remains available as an optional second visualization:
 
@@ -86,9 +88,15 @@ a pose on `/initialpose`.
 | `/ego_racecar/odom` | `nav_msgs/msg/Odometry` | Simulator output |
 | `/drive` | `ackermann_msgs/msg/AckermannDriveStamped` | Controller input |
 | `/waypoints` | `visualization_msgs/msg/MarkerArray` | Starter visualization |
-| `/ego_racecar/lap_time` | simulator message | Simulator output |
-| `/ego_racecar/lap_count` | simulator message | Simulator output |
-| `/ego_racecar/collision` | simulator message | Simulator output |
+| `/ego_racecar/lap_time` | `std_msgs/msg/Float32` | Simulator output |
+| `/ego_racecar/lap_count` | `std_msgs/msg/Int32` | Simulator output |
+| `/ego_racecar/collision` | `std_msgs/msg/Bool` | Simulator output |
+| `/competition/current_lap_time` | `std_msgs/msg/Float32` | Live current lap |
+| `/competition/last_lap_time` | `std_msgs/msg/Float32` | Last completed lap |
+| `/competition/best_lap_time` | `std_msgs/msg/Float32` | Best completed lap |
+| `/competition/lap_count` | `std_msgs/msg/Int32` | Completed laps |
+| `/competition/lap_history` | `std_msgs/msg/Float32MultiArray` | Completed times |
+| `/competition/race_status` | `std_msgs/msg/String` | Monitor state |
 
 ## Tested revisions
 
@@ -122,6 +130,7 @@ above so every student uses the same simulator version.
 └── starter_ws/
     └── src/
         ├── competition_bringup/
+        ├── race_monitor/
         └── pure_pursuit/
 ```
 
@@ -135,4 +144,3 @@ The simulator is not a substitute for physical-car safety validation. Before
 using student code on a real vehicle, add speed limits, a physical emergency
 stop, a dead-man mechanism, controlled low-speed tests, and trackside
 supervision.
-

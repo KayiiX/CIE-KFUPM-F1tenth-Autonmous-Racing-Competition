@@ -1,0 +1,14 @@
+race_monitor:
+  ros__parameters:
+    odom_topic: "/ego_racecar/odom"
+    official_lap_count_topic: "/ego_racecar/lap_count"
+    official_lap_time_topic: "/ego_racecar/lap_time"
+
+    # The first point and forward tangent of maps/levine_centerline.csv.
+    finish_x: 0.0310
+    finish_y: -0.0691
+    finish_tangent_x: 0.99996
+    finish_tangent_y: 0.00887
+    finish_half_width: 1.0
+    finish_approach_distance: 2.0
+    finish_rearm_distance: 0.5
