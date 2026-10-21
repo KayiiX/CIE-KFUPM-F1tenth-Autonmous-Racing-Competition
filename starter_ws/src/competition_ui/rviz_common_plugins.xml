@@ -1,0 +1,10 @@
+<library path="race_dashboard_panel">
+  <class
+    name="competition_ui/RaceDashboardPanel"
+    type="competition_ui::RaceDashboardPanel"
+    base_class_type="rviz_common::Panel">
+    <description>
+      Fixed F1-style dashboard for lap count, current, last, best, and history.
+    </description>
+  </class>
+</library>

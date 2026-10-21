@@ -7,7 +7,7 @@ This repository gives students:
 
 - a validated Ubuntu 24.04 and ROS 2 Jazzy simulator setup;
 - pinned F1TENTH simulator revisions;
-- RViz and Foxglove visualization instructions;
+- RViz with a fixed F1-style race dashboard, plus Foxglove instructions;
 - a live lap timer, completed-lap counter, best time, and lap history;
 - safe PS5 controller teleoperation with analog Ackermann steering;
 - a conservative Pure Pursuit controller for the Levine map;
@@ -43,7 +43,8 @@ cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 ./scripts/launch_sim.sh
 ```
 
-RViz opens automatically with the map, vehicle, LiDAR, and race-status display.
+RViz opens automatically with the map, vehicle, LiDAR, and a fixed F1-style
+race dashboard. The panel remains on screen while the 3D camera moves.
 The first finish-line crossing completes the out-lap and starts the live timer.
 
 Foxglove remains available as an optional second visualization:
@@ -156,6 +157,7 @@ above so every student uses the same simulator version.
     └── src/
         ├── competition_bringup/
         ├── competition_teleop/
+        ├── competition_ui/
         ├── race_monitor/
         └── pure_pursuit/
 ```

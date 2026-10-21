@@ -7,7 +7,6 @@ from geometry_msgs.msg import PoseWithCovarianceStamped
 from nav_msgs.msg import Odometry
 from rclpy.node import Node
 from std_msgs.msg import Bool, Float32, Float32MultiArray, Int32, String
-from visualization_msgs.msg import Marker
 
 
 class RaceMonitor(Node):
@@ -85,9 +84,6 @@ class RaceMonitor(Node):
         )
         self.history_pub = self.create_publisher(
             Float32MultiArray, "/competition/lap_history", 10
-        )
-        self.marker_pub = self.create_publisher(
-            Marker, "/competition/race_status_marker", 10
         )
 
         self.create_subscription(
@@ -238,36 +234,6 @@ class RaceMonitor(Node):
         elapsed = end - self.lap_start_ns - self.paused_duration_ns
         return max(0.0, elapsed / 1_000_000_000.0)
 
-    @staticmethod
-    def format_time(value):
-        if value <= 0.0:
-            return "--"
-        return f"{value:.2f} s"
-
-    def make_marker(self, now_msg, current):
-        marker = Marker()
-        marker.header.frame_id = "ego_racecar/base_link"
-        marker.header.stamp = now_msg
-        marker.ns = "race_monitor"
-        marker.id = 0
-        marker.type = Marker.TEXT_VIEW_FACING
-        marker.action = Marker.ADD
-        marker.pose.position.x = -0.8
-        marker.pose.position.z = 1.2
-        marker.pose.orientation.w = 1.0
-        marker.scale.z = 0.35
-        marker.color.r = 0.2
-        marker.color.g = 1.0
-        marker.color.b = 0.3
-        marker.color.a = 1.0
-        marker.text = (
-            f"{self.status} | Laps: {self.lap_count}\n"
-            f"Current: {self.format_time(current)} | "
-            f"Last: {self.format_time(self.last_lap_time)} | "
-            f"Best: {self.format_time(self.best_lap_time)}"
-        )
-        return marker
-
     def publish_state(self):
         now = self.now_ns()
         if (
@@ -283,9 +249,6 @@ class RaceMonitor(Node):
         self.count_pub.publish(Int32(data=self.lap_count))
         self.status_pub.publish(String(data=self.status))
         self.history_pub.publish(Float32MultiArray(data=self.lap_history))
-        self.marker_pub.publish(
-            self.make_marker(self.get_clock().now().to_msg(), current)
-        )
 
 
 def main(args=None):

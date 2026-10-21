@@ -1,10 +1,11 @@
 Panels:
+  - Class: competition_ui/RaceDashboardPanel
+    Name: Race Dashboard
   - Class: rviz_common/Displays
     Name: Displays
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Race Status1
       Splitter Ratio: 0.5
     Tree Height: 700
   - Class: rviz_common/Views
@@ -96,19 +97,6 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Class: rviz_default_plugins/Marker
-      Enabled: true
-      Name: Race Status
-      Namespaces:
-        race_monitor: true
-      Queue Size: 10
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /competition/race_status_marker
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

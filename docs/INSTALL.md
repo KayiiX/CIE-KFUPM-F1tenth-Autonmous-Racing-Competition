@@ -152,11 +152,12 @@ Simulator:
 ./scripts/launch_sim.sh
 ```
 
-RViz opens automatically with the competition simulator and shows a race-status
-label near the car. The first finish-line crossing is an out-lap; it starts the
-live stopwatch, and the next crossing completes lap 1. The Foxglove bridge also
-runs in the background and remains available at `ws://localhost:8765`, but the
-browser is not opened automatically.
+RViz opens automatically with the competition simulator and shows a fixed
+F1-style race dashboard. It displays status, current lap, completed laps, last
+time, best time, and recent lap history. The first finish-line crossing is an
+out-lap; it starts the live stopwatch, and the next crossing completes lap 1.
+The Foxglove bridge also runs in the background and remains available at
+`ws://localhost:8765`, but the browser is not opened automatically.
 
 Pure Pursuit, in another terminal:
 
@@ -224,8 +225,11 @@ Using RViz **2D Pose Estimate** resets the timing session along with the car.
 
 ## 10. RViz
 
-The normal simulator launch starts RViz automatically. To restart RViz
-manually while the simulator is still running:
+The normal simulator launch starts RViz and the **Race Dashboard** panel
+automatically. The dashboard is an RViz plugin in the `competition_ui` package
+and subscribes to the `/competition/*` timing topics.
+
+To restart RViz manually while the simulator is still running:
 
 ```bash
 source /opt/ros/jazzy/setup.bash
