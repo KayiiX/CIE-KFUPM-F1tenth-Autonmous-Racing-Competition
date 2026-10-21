@@ -69,7 +69,6 @@ curl -L -o /tmp/ros2-apt-source.deb \
 
 sudo dpkg -i /tmp/ros2-apt-source.deb
 sudo apt update
-sudo apt upgrade -y
 ```
 
 Install ROS 2 Desktop and its development tools:
