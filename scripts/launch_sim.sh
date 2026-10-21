@@ -16,5 +16,5 @@ source_environment /opt/ros/jazzy/setup.bash
 source_environment "$WS/.venv/bin/activate"
 source_environment "$WS/install/setup.bash"
 
-exec ros2 launch f1tenth_gym_ros gym_bridge_launch.py   num_agents:=1 open_foxglove:=false
+exec ros2 launch competition_bringup competition_sim_launch.py
 
