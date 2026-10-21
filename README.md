@@ -121,6 +121,7 @@ a pose on `/initialpose`.
 | `/competition/best_lap_time` | `std_msgs/msg/Float32` | Best completed lap |
 | `/competition/lap_count` | `std_msgs/msg/Int32` | Completed laps |
 | `/competition/lap_history` | `std_msgs/msg/Float32MultiArray` | Completed times |
+| `/competition/collision_count` | `std_msgs/msg/Int32` | Session collisions |
 | `/competition/race_status` | `std_msgs/msg/String` | Monitor state |
 
 ## Tested revisions
@@ -172,3 +173,4 @@ The simulator is not a substitute for physical-car safety validation. Before
 using student code on a real vehicle, add speed limits, a physical emergency
 stop, a dead-man mechanism, controlled low-speed tests, and trackside
 supervision.
+

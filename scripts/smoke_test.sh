@@ -48,6 +48,7 @@ require_topic /competition/current_lap_time
 require_topic /competition/last_lap_time
 require_topic /competition/best_lap_time
 require_topic /competition/lap_count
+require_topic /competition/collision_count
 require_topic /competition/race_status
 
 echo "Core nodes and topics are present."
@@ -57,3 +58,4 @@ ros2 topic info /ego_racecar/odom
 ros2 topic info /drive
 ros2 topic echo /competition/race_status --once
 ros2 topic echo /competition/lap_count --once
+

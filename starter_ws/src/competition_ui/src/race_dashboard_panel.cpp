@@ -47,6 +47,11 @@ RaceDashboardPanel::RaceDashboardPanel(QWidget * parent)
   root->addWidget(status_caption);
   root->addWidget(status_value_);
 
+  collision_value_ = new QLabel("COLLISIONS   0");
+  collision_value_->setObjectName("collisionValue");
+  collision_value_->setAlignment(Qt::AlignCenter);
+  root->addWidget(collision_value_);
+
   auto * lap_frame = new QFrame();
   lap_frame->setObjectName("lapFrame");
   auto * lap_layout = new QVBoxLayout(lap_frame);
@@ -135,6 +140,16 @@ RaceDashboardPanel::RaceDashboardPanel(QWidget * parent)
     QLabel#statusWaiting { background-color: #343944; color: #d4d7dd; }
     QLabel#statusOutLap { background-color: #5a4210; color: #ffc83d; }
     QLabel#statusRacing { background-color: #123f2c; color: #42f59e; }
+    QLabel#collisionValue {
+      color: #ff5964;
+      background-color: #281216;
+      border: 1px solid #5c2028;
+      border-radius: 4px;
+      padding: 6px;
+      font-family: "DejaVu Sans Mono";
+      font-size: 12px;
+      font-weight: 800;
+    }
     QFrame#lapFrame {
       background-color: #12151c;
       border: 1px solid #252a35;
@@ -217,6 +232,13 @@ void RaceDashboardPanel::onInitialize()
       QMetaObject::invokeMethod(
         this, [this, value]() {updateLapCount(value);}, Qt::QueuedConnection);
     });
+  collision_count_sub_ = node->create_subscription<std_msgs::msg::Int32>(
+    "/competition/collision_count", 10,
+    [this](const std_msgs::msg::Int32 & msg) {
+      const auto value = msg.data;
+      QMetaObject::invokeMethod(
+        this, [this, value]() {updateCollisionCount(value);}, Qt::QueuedConnection);
+    });
   history_sub_ = node->create_subscription<std_msgs::msg::Float32MultiArray>(
     "/competition/lap_history", 10,
     [this](const std_msgs::msg::Float32MultiArray & msg) {
@@ -291,6 +313,12 @@ void RaceDashboardPanel::updateLapCount(int count)
 {
   completed_laps_ = std::max(0, count);
   refreshLapDisplay();
+}
+
+void RaceDashboardPanel::updateCollisionCount(int count)
+{
+  collision_value_->setText(
+    QString("COLLISIONS   %1").arg(std::max(0, count)));
 }
 
 void RaceDashboardPanel::updateHistory(const std::vector<float> & history)

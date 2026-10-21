@@ -212,6 +212,7 @@ ros2 topic echo /competition/lap_count
 ros2 topic echo /competition/last_lap_time
 ros2 topic echo /competition/best_lap_time
 ros2 topic echo /competition/lap_history
+ros2 topic echo /competition/collision_count
 ```
 
 Expected sequence:
@@ -222,6 +223,8 @@ Expected sequence:
 4. last, best, and history receive the simulator's completed-lap time.
 
 Using RViz **2D Pose Estimate** resets the timing session along with the car.
+It also resets the session collision counter. A continuous contact with a wall
+counts as one collision; leaving and hitting something again counts another.
 
 ## 10. RViz
 
@@ -321,3 +324,4 @@ source starter_ws/.venv/bin/activate
 python -m pip install --upgrade cffi
 python -m pip check
 ```
+

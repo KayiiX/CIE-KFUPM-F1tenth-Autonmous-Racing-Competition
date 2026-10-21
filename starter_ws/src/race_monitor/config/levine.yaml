@@ -3,6 +3,7 @@ race_monitor:
     odom_topic: "/ego_racecar/odom"
     official_lap_count_topic: "/ego_racecar/lap_count"
     official_lap_time_topic: "/ego_racecar/lap_time"
+    collision_topic: "/ego_racecar/collision"
 
     # The first point and forward tangent of maps/levine_centerline.csv.
     finish_x: 0.0310

@@ -37,6 +37,7 @@ private:
   void updateLast(float seconds);
   void updateBest(float seconds);
   void updateLapCount(int count);
+  void updateCollisionCount(int count);
   void updateHistory(const std::vector<float> & history);
 
   std::shared_ptr<rviz_common::ros_integration::RosNodeAbstractionIface> node_ptr_;
@@ -45,6 +46,7 @@ private:
   rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr last_sub_;
   rclcpp::Subscription<std_msgs::msg::Float32>::SharedPtr best_sub_;
   rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr count_sub_;
+  rclcpp::Subscription<std_msgs::msg::Int32>::SharedPtr collision_count_sub_;
   rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr history_sub_;
 
   QLabel * status_value_;
@@ -53,6 +55,7 @@ private:
   QLabel * current_value_;
   QLabel * last_value_;
   QLabel * best_value_;
+  QLabel * collision_value_;
   QLabel * history_value_;
 
   std::string status_{"WAITING_FOR_ODOMETRY"};

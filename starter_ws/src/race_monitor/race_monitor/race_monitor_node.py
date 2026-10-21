@@ -22,6 +22,9 @@ class RaceMonitor(Node):
         self.declare_parameter(
             "official_lap_time_topic", "/ego_racecar/lap_time"
         )
+        self.declare_parameter(
+            "collision_topic", "/ego_racecar/collision"
+        )
         self.declare_parameter("finish_x", 0.0310)
         self.declare_parameter("finish_y", -0.0691)
         self.declare_parameter("finish_tangent_x", 1.0)
@@ -58,6 +61,8 @@ class RaceMonitor(Node):
         self.latest_official_lap_time = 0.0
         self.pending_lap_count = None
         self.pending_deadline_ns = None
+        self.collision_count = 0
+        self.collision_active = False
 
         self.status = "WAITING_FOR_ODOMETRY"
         self.previous_longitudinal = None
@@ -85,6 +90,9 @@ class RaceMonitor(Node):
         self.history_pub = self.create_publisher(
             Float32MultiArray, "/competition/lap_history", 10
         )
+        self.collision_count_pub = self.create_publisher(
+            Int32, "/competition/collision_count", 10
+        )
 
         self.create_subscription(
             Odometry,
@@ -102,6 +110,12 @@ class RaceMonitor(Node):
             Float32,
             str(self.get_parameter("official_lap_time_topic").value),
             self.lap_time_callback,
+            20,
+        )
+        self.create_subscription(
+            Bool,
+            str(self.get_parameter("collision_topic").value),
+            self.collision_callback,
             20,
         )
         self.create_subscription(Bool, "/pause_sim", self.pause_callback, 10)
@@ -129,6 +143,8 @@ class RaceMonitor(Node):
         self.latest_official_lap_time = 0.0
         self.pending_lap_count = None
         self.pending_deadline_ns = None
+        self.collision_count = 0
+        self.collision_active = False
         self.status = "OUT_LAP"
         self.previous_longitudinal = None
         self.finish_armed = False
@@ -209,6 +225,15 @@ class RaceMonitor(Node):
     def lap_time_callback(self, msg):
         self.latest_official_lap_time = float(msg.data)
 
+    def collision_callback(self, msg):
+        collision_now = bool(msg.data)
+        if collision_now and not self.collision_active:
+            self.collision_count += 1
+            self.get_logger().warning(
+                f"Collision {self.collision_count} recorded."
+            )
+        self.collision_active = collision_now
+
     def finalize_pending_lap(self):
         if self.pending_lap_count is None:
             return
@@ -249,6 +274,7 @@ class RaceMonitor(Node):
         self.count_pub.publish(Int32(data=self.lap_count))
         self.status_pub.publish(String(data=self.status))
         self.history_pub.publish(Float32MultiArray(data=self.lap_history))
+        self.collision_count_pub.publish(Int32(data=self.collision_count))
 
 
 def main(args=None):
