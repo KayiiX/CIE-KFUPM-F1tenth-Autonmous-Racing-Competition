@@ -124,8 +124,21 @@ If all commands finish without an error, continue with the repository setup.
 ## 5. Clone this repository
 
 ```bash
-git clone https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
+git clone --branch v1 --single-branch \
+  https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
 cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
+```
+
+Confirm that the frozen first-edition branch is active:
+
+```bash
+git branch --show-current
+```
+
+Expected output:
+
+```text
+v1
 ```
 
 ## 6. Set up and build

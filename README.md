@@ -31,11 +31,16 @@ First install ROS 2 Jazzy Desktop and the prerequisites in
 [docs/INSTALL.md](docs/INSTALL.md). Then:
 
 ```bash
-git clone https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
+git clone --branch v1 --single-branch \
+  https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
 cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 
 ./scripts/setup_workspace.sh
 ```
+
+The `v1` branch is the frozen first-edition competition environment. Students
+should remain on this branch so later development on `main` does not change
+their simulator during the competition.
 
 ### Terminal 1: simulator and RViz
 
