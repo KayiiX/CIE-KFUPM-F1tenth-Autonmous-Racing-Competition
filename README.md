@@ -9,6 +9,7 @@ This repository gives students:
 - pinned F1TENTH simulator revisions;
 - RViz and Foxglove visualization instructions;
 - a live lap timer, completed-lap counter, best time, and lap history;
+- safe PS5 controller teleoperation with analog Ackermann steering;
 - a conservative Pure Pursuit controller for the Levine map;
 - repeatable setup, launch, stop, and smoke-test commands.
 
@@ -73,6 +74,29 @@ Run the interface smoke test while the simulator is active:
 ./scripts/smoke_test.sh
 ```
 
+### Optional: PS5 teleoperation
+
+Do not run Pure Pursuit and PS5 teleoperation at the same time because both
+publish commands to `/drive`. With the simulator running, start the controller
+in Terminal 2:
+
+```bash
+./scripts/launch_ps5_teleop.sh
+```
+
+| Control | Action |
+|---|---|
+| Hold L1 | Enable motion (dead-man switch) |
+| Left stick horizontal | Analog steering |
+| R2 | Forward throttle, limited to 1.5 m/s |
+| L2 | Reverse, limited to 0.5 m/s |
+| Cross | Stop |
+| Release L1 | Stop |
+
+The controller launcher uses ROS `game_controller_node`, which provides a
+standardized axis and button order for compatible gamepads. Disconnecting the
+controller also triggers a stop command after 0.5 seconds.
+
 ## Reset the car
 
 For an exact reset, stop the simulator with `Ctrl+C` and relaunch it.
@@ -123,6 +147,7 @@ above so every student uses the same simulator version.
 │   └── INSTALL.md
 ├── scripts/
 │   ├── launch_pure_pursuit.sh
+│   ├── launch_ps5_teleop.sh
 │   ├── launch_sim.sh
 │   ├── setup_workspace.sh
 │   ├── smoke_test.sh
@@ -130,6 +155,7 @@ above so every student uses the same simulator version.
 └── starter_ws/
     └── src/
         ├── competition_bringup/
+        ├── competition_teleop/
         ├── race_monitor/
         └── pure_pursuit/
 ```

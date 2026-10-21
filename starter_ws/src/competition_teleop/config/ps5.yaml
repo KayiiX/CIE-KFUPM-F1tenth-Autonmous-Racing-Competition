@@ -1,0 +1,23 @@
+game_controller_node:
+  ros__parameters:
+    deadzone: 0.05
+    autorepeat_rate: 20.0
+    sticky_buttons: false
+
+ps5_teleop:
+  ros__parameters:
+    joy_topic: "/joy"
+    drive_topic: "/drive"
+
+    # ROS joy/game_controller_node standardized SDL mapping.
+    steering_axis: 0       # Left stick horizontal; left is positive.
+    reverse_axis: 4        # L2; pressed values are negative.
+    throttle_axis: 5       # R2; pressed values are negative.
+    stop_button: 0         # Cross.
+    enable_button: 9       # L1 shoulder button.
+
+    maximum_forward_speed: 1.5
+    maximum_reverse_speed: 0.5
+    maximum_steering_angle: 0.35
+    trigger_deadzone: 0.05
+    joy_timeout: 0.5

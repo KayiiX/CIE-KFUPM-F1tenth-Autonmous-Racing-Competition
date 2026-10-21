@@ -166,6 +166,16 @@ Pure Pursuit, in another terminal:
 
 The controller starts moving the car immediately.
 
+PS5 teleoperation can be used instead of Pure Pursuit:
+
+```bash
+./scripts/launch_ps5_teleop.sh
+```
+
+Hold L1 to enable the car, steer with the left stick, use R2 for forward
+throttle, L2 for reverse, and Cross to stop. Releasing L1 stops the car. Do not
+run this launcher and Pure Pursuit together because both publish to `/drive`.
+
 ## 8. Validate topics
 
 With the simulator running:

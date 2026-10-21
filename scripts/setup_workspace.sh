@@ -84,6 +84,7 @@ source_environment "$WS/install/setup.bash"
 
 ros2 pkg prefix f1tenth_gym_ros
 ros2 pkg prefix competition_bringup
+ros2 pkg prefix competition_teleop
 ros2 pkg prefix race_monitor
 ros2 pkg prefix pure_pursuit
 python -c "import f1tenth_gym; print(f1tenth_gym.__file__)"
