@@ -139,52 +139,22 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Class: rviz_default_plugins/ThirdPersonFollower
-      Distance: 2.723
-      Field of View: 0.7854
+      Class: rviz_default_plugins/Orbit
+      Distance: 10
       Focal Point:
-        X: 3
+        X: 0
         Y: 0
         Z: 0
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05
       Invert Z Axis: false
-      Name: Onboard
+      Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.129
-      Target Frame: ego_racecar/base_link
-      Yaw: 3.1416
-    Saved:
-      - Class: rviz_default_plugins/ThirdPersonFollower
-        Distance: 2.723
-        Field of View: 0.7854
-        Focal Point:
-          X: 3
-          Y: 0
-          Z: 0
-        Focal Shape Fixed Size: true
-        Focal Shape Size: 0.05
-        Invert Z Axis: false
-        Name: Onboard
-        Near Clip Distance: 0.01
-        Pitch: 0.129
-        Target Frame: ego_racecar/base_link
-        Yaw: 3.1416
-      - Class: rviz_default_plugins/Orbit
-        Distance: 10
-        Field of View: 0.7854
-        Focal Point:
-          X: 0
-          Y: 0
-          Z: 0
-        Focal Shape Fixed Size: true
-        Focal Shape Size: 0.05
-        Invert Z Axis: false
-        Name: Track Overview
-        Near Clip Distance: 0.01
-        Pitch: 0.5354
-        Target Frame: <Fixed Frame>
-        Yaw: 3.1454
+      Pitch: 0.5354
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 3.1454
+    Saved: ~
 Window Geometry:
   Height: 900
   Width: 1600
