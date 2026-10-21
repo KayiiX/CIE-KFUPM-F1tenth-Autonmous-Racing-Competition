@@ -232,6 +232,13 @@ The normal simulator launch starts RViz and the **Race Dashboard** panel
 automatically. The dashboard is an RViz plugin in the `competition_ui` package
 and subscribes to the `/competition/*` timing topics.
 
+RViz starts in the saved **Onboard** view. It follows the position and heading
+of `ego_racecar/base_link` and looks forward from just above the chassis. This
+is an RViz visualization, not a simulated image sensor, so it does not publish
+a `sensor_msgs/Image` topic. In the RViz **Views** panel, select the saved
+**Track Overview** view to return to the map view; select **Onboard** to switch
+back.
+
 To restart RViz manually while the simulator is still running:
 
 ```bash
