@@ -35,25 +35,15 @@ cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 ./scripts/setup_workspace.sh
 ```
 
-### Terminal 1: simulator
+### Terminal 1: simulator and RViz
 
 ```bash
 ./scripts/launch_sim.sh
 ```
 
-### Terminal 2: visualization
+RViz opens automatically with the map, vehicle, and LiDAR configuration.
 
-RViz:
-
-```bash
-source /opt/ros/jazzy/setup.bash
-source starter_ws/.venv/bin/activate
-source starter_ws/install/setup.bash
-
-rviz2 -d starter_ws/src/f1tenth_gym_ros/config/rviz/gym_bridge.rviz
-```
-
-Foxglove:
+Foxglove remains available as an optional second visualization:
 
 1. Open <https://app.foxglove.dev>.
 2. Select **Open connection** and **Foxglove WebSocket**.
@@ -61,7 +51,7 @@ Foxglove:
 4. Import:
    `starter_ws/src/f1tenth_gym_ros/config/foxglove/gym_bridge_foxglove.json`.
 
-### Terminal 3: Pure Pursuit kickstart
+### Terminal 2: Pure Pursuit kickstart
 
 The car starts moving immediately:
 
@@ -131,6 +121,7 @@ above so every student uses the same simulator version.
 │   └── stop_car.sh
 └── starter_ws/
     └── src/
+        ├── competition_bringup/
         └── pure_pursuit/
 ```
 

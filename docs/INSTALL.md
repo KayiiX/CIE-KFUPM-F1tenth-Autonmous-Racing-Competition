@@ -152,6 +152,10 @@ Simulator:
 ./scripts/launch_sim.sh
 ```
 
+RViz opens automatically with the competition simulator. The Foxglove bridge
+also runs in the background and remains available at `ws://localhost:8765`, but
+the browser is not opened automatically.
+
 Pure Pursuit, in another terminal:
 
 ```bash
@@ -184,6 +188,9 @@ Expected:
 - when Pure Pursuit runs, `/drive` also has one publisher.
 
 ## 9. RViz
+
+The normal simulator launch starts RViz automatically. To restart RViz
+manually while the simulator is still running:
 
 ```bash
 source /opt/ros/jazzy/setup.bash
