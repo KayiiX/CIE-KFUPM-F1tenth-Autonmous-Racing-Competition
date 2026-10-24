@@ -172,15 +172,7 @@ out-lap; it starts the live stopwatch, and the next crossing completes lap 1.
 The Foxglove bridge also runs in the background and remains available at
 `ws://localhost:8765`, but the browser is not opened automatically.
 
-Pure Pursuit, in another terminal:
-
-```bash
-./scripts/launch_pure_pursuit.sh
-```
-
-The controller starts moving the car immediately.
-
-PS5 teleoperation can be used instead of Pure Pursuit:
+PS5 teleoperation, in another terminal:
 
 ```bash
 ./scripts/launch_ps5_teleop.sh
@@ -188,7 +180,7 @@ PS5 teleoperation can be used instead of Pure Pursuit:
 
 Hold L1 to enable the car, steer with the left stick, use R2 for forward
 throttle, L2 for reverse, and Cross to stop. Releasing L1 stops the car. Do not
-run this launcher and Pure Pursuit together because both publish to `/drive`.
+run teleoperation and a team controller together because both publish to `/drive`.
 
 ## 8. Validate topics
 
@@ -211,7 +203,7 @@ Expected:
 - `/scan`: one publisher;
 - `/ego_racecar/odom`: one publisher;
 - `/drive`: one simulator subscriber;
-- when Pure Pursuit runs, `/drive` also has one publisher.
+- when a controller runs, `/drive` also has one publisher.
 
 ## 9. Validate lap timing
 

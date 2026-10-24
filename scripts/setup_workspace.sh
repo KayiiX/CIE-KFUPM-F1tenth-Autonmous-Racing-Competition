@@ -87,7 +87,6 @@ ros2 pkg prefix competition_bringup
 ros2 pkg prefix competition_teleop
 ros2 pkg prefix competition_ui
 ros2 pkg prefix race_monitor
-ros2 pkg prefix pure_pursuit
 python -c "import f1tenth_gym; print(f1tenth_gym.__file__)"
 python -m pip check
 

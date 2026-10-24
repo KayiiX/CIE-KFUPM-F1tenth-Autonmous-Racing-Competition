@@ -10,7 +10,7 @@ This document turns the proposed competition format into a concrete, reviewable 
 
 ### Stage 0 — Workshop and simulator onboarding (unscored)
 
-All teams install and run the same V1 environment. Organizers demonstrate the simulator, ROS topics, the race dashboard, teleoperation, and the Pure Pursuit starter. Teams may practice and modify their controller in the practice workspace.
+All teams install and run the same V1 environment. Organizers demonstrate the simulator, ROS topics, the race dashboard, and PS5 teleoperation. Teams may practice and modify their controller in the practice workspace.
 
 This stage is for learning and technical checks; it does not affect ranking.
 
@@ -54,7 +54,7 @@ This stage is for learning and technical checks; it does not affect ranking.
 
 - Controllers receive `/scan` (`sensor_msgs/msg/LaserScan`) and `/ego_racecar/odom` (`nav_msgs/msg/Odometry`).
 - Controllers publish driving commands to `/drive` (`ackermann_msgs/msg/AckermannDriveStamped`).
-- Only one team controller may publish to `/drive` during an official attempt. Teleoperation and starter controllers must be stopped.
+- Only one team controller may publish to `/drive` during an official attempt. Manual teleoperation must be stopped.
 - Teams may modify their controller package. They may not modify the simulator, race monitor, collision detection, official launch configuration, maps, or scoring code used for an official run.
 - Stages 1 and 2 may use the officially released map and route.
 - Stage 3 controllers may use live sensor/odometry data but may not use a hidden map, hidden route, track-specific waypoint file, or other track-specific coordinates. These assets must be withheld from the public student checkout until after the challenge.

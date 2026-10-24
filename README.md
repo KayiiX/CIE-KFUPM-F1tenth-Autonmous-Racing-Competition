@@ -10,11 +10,8 @@ This repository gives students:
 - RViz with a fixed F1-style race dashboard, plus Foxglove instructions;
 - a live lap timer, completed-lap counter, best time, and lap history;
 - safe PS5 controller teleoperation with analog Ackermann steering;
-- a conservative Pure Pursuit controller for the Levine map;
+- a documented ROS topic interface for student-written controllers;
 - repeatable setup, launch, stop, and smoke-test commands.
-
-> The Pure Pursuit package is starter code, not a competition solution. Teams
-> should understand, test, and improve it.
 
 ## Validated platform
 
@@ -62,19 +59,7 @@ Foxglove remains available as an optional second visualization:
 4. Import:
    `starter_ws/src/f1tenth_gym_ros/config/foxglove/gym_bridge_foxglove.json`.
 
-### Terminal 2: Pure Pursuit kickstart
-
-The car starts moving immediately:
-
-```bash
-./scripts/launch_pure_pursuit.sh
-```
-
-Stop the controller with `Ctrl+C`, then stop the retained drive command:
-
-```bash
-./scripts/stop_car.sh
-```
+### Verify the simulator
 
 Run the interface smoke test while the simulator is active:
 
@@ -91,11 +76,9 @@ with a team ID and controller revision:
 
 Run bags and metadata are saved under the ignored `run_logs/` directory.
 
-### Optional: PS5 teleoperation
+### Terminal 2: PS5 teleoperation (optional)
 
-Do not run Pure Pursuit and PS5 teleoperation at the same time because both
-publish commands to `/drive`. With the simulator running, start the controller
-in Terminal 2:
+With the simulator running, start manual teleoperation:
 
 ```bash
 ./scripts/launch_ps5_teleop.sh
@@ -110,9 +93,11 @@ in Terminal 2:
 | Cross | Stop |
 | Release L1 | Stop |
 
-The controller launcher uses ROS `game_controller_node`, which provides a
-standardized axis and button order for compatible gamepads. Disconnecting the
-controller also triggers a stop command after 0.5 seconds.
+The launcher uses ROS `game_controller_node`, which provides a standardized
+axis and button order for compatible gamepads. Disconnecting the controller
+also triggers a stop command after 0.5 seconds. Stop teleoperation before
+running a student controller, since both publish to `/drive`. If a drive
+command remains after a controller exits, run `./scripts/stop_car.sh`.
 
 ## Reset the car
 
@@ -128,7 +113,6 @@ a pose on `/initialpose`.
 | `/scan` | `sensor_msgs/msg/LaserScan` | Simulator output |
 | `/ego_racecar/odom` | `nav_msgs/msg/Odometry` | Simulator output |
 | `/drive` | `ackermann_msgs/msg/AckermannDriveStamped` | Controller input |
-| `/waypoints` | `visualization_msgs/msg/MarkerArray` | Starter visualization |
 | `/ego_racecar/lap_time` | `std_msgs/msg/Float32` | Simulator output |
 | `/ego_racecar/lap_count` | `std_msgs/msg/Int32` | Simulator output |
 | `/ego_racecar/collision` | `std_msgs/msg/Bool` | Simulator output |
@@ -146,7 +130,6 @@ a pose on `/initialpose`.
 |---|---|---|
 | `f1tenth/f1tenth_gym_ros` | `dev-jazzy` | `2c019810b4098ed82d44cad1d7d282a2dfc12421` |
 | `f1tenth/f1tenth_gym` | `dev-jax` | `ec3b1a4693ed20317e42e57a9454d94b824cec81` |
-| Waterloo Pure Pursuit source | `main` | `c20cf63d04b9841ffdb6b2f963bd737d78074136` |
 
 ## Official simulator reference
 
@@ -165,7 +148,6 @@ above so every student uses the same simulator version.
 │   ├── COMPETITION_RULES_DRAFT.md
 │   └── INSTALL.md
 ├── scripts/
-│   ├── launch_pure_pursuit.sh
 │   ├── launch_ps5_teleop.sh
 │   ├── launch_sim.sh
 │   ├── record_run.sh
@@ -178,7 +160,6 @@ above so every student uses the same simulator version.
         ├── competition_teleop/
         ├── competition_ui/
         ├── race_monitor/
-        └── pure_pursuit/
 ```
 
 The setup script creates `starter_ws/.venv`, clones the pinned simulator source
