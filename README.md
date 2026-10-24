@@ -115,6 +115,10 @@ a pose on `/initialpose`.
 | `/competition/collision_count` | `std_msgs/msg/Int32` | Session collisions |
 | `/competition/race_status` | `std_msgs/msg/String` | Monitor state |
 
+## Student controller package and submission guide
+
+The draft V1.1 guide for creating a Python ROS 2 controller package, building and testing it with the simulator, and submitting the exact version is in [docs/CONTROLLER_SUBMISSION_GUIDE.md](docs/CONTROLLER_SUBMISSION_GUIDE.md).
+
 ## Tested revisions
 
 | Component | Branch | Commit |
