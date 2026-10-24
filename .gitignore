@@ -21,3 +21,6 @@ starter_ws/src/f1tenth_gym_ros/
 .idea/
 .DS_Store
 
+
+# Organizer run records (ROS bags and metadata)
+/run_logs/

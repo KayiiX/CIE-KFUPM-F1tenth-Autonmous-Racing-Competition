@@ -40,7 +40,9 @@ cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 
 The `v1` branch is the frozen first-edition competition environment. Students
 should remain on this branch so later development on `main` does not change
-their simulator during the competition.
+their simulator during the competition. The proposed event stages and rules
+are in [docs/COMPETITION_RULES_DRAFT.md](docs/COMPETITION_RULES_DRAFT.md); that
+document is an organizer draft on the V1.1 branch, not part of the frozen V1 release.
 
 ### Terminal 1: simulator and RViz
 
@@ -79,6 +81,15 @@ Run the interface smoke test while the simulator is active:
 ```bash
 ./scripts/smoke_test.sh
 ```
+
+Organizers can record an official simulator run, without recording the map topic,
+with a team ID and controller revision:
+
+```bash
+./scripts/record_run.sh TEAM_ID CONTROLLER_REVISION
+```
+
+Run bags and metadata are saved under the ignored `run_logs/` directory.
 
 ### Optional: PS5 teleoperation
 
@@ -151,11 +162,13 @@ above so every student uses the same simulator version.
 ├── README.md
 ├── THIRD_PARTY_NOTICES.md
 ├── docs/
+│   ├── COMPETITION_RULES_DRAFT.md
 │   └── INSTALL.md
 ├── scripts/
 │   ├── launch_pure_pursuit.sh
 │   ├── launch_ps5_teleop.sh
 │   ├── launch_sim.sh
+│   ├── record_run.sh
 │   ├── setup_workspace.sh
 │   ├── smoke_test.sh
 │   └── stop_car.sh
