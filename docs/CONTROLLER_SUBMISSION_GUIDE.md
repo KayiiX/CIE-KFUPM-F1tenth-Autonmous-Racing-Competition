@@ -84,15 +84,9 @@ Your `package.xml` must list every ROS package your Python code imports. The pac
 
 ## Learning from the official F1TENTH labs
 
-The [F1TENTH labs repository](https://github.com/f1tenth/f1tenth_labs_openrepo) is an optional reference for seeing how common autonomous-racing algorithms are approached in lab exercises. Its lab collection includes ROS basics, automatic emergency braking, wall following, Follow the Gap, Pure Pursuit, RRT, MPC, MPPI, and vision.
+The [F1TENTH labs repository](https://github.com/f1tenth/f1tenth_labs_openrepo) offers examples of algorithms such as Follow the Gap, wall following, Pure Pursuit, and MPC.
 
-Use it to study ideas and implementation patterns, then adapt them to this competition’s ROS 2 Jazzy environment and required topics. Lab code may use different dependencies, APIs, or topic names, so it may not build or run here unchanged. The labs repository uses submodules; to download the lab contents when cloning it, use:
-
-~~~bash
-git clone --recurse-submodules https://github.com/f1tenth/f1tenth_labs_openrepo.git
-~~~
-
-The labs are learning material. The required controller interface and competition rules in this guide still apply.
+**When adapting lab code, follow this guide’s required ROS topics, package dependencies, build steps, and submission rules. Lab code may not work here unchanged.**
 
 ## 3. Build your package
 
