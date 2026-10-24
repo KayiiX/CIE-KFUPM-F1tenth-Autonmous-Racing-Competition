@@ -63,10 +63,10 @@ This stage is for learning and technical checks; it does not affect ranking.
 ## Run administration and scoring
 
 - Organizers reset the simulator, starting pose, lap timer, and collision counter before each official attempt.
-- The official race monitor is the scoring source for simulator lap times, completed laps, and collisions. Organizers record the team identifier, controller version/hash, attempt number, result, and any intervention.
+- The official race monitor is the scoring source for simulator lap times, completed laps, and collisions. Organizers track the team identifier, submitted controller version/hash, attempt number, result, and any intervention in the official results sheet.
 - A run ends when the attempt limit is reached, three timed laps are complete, the controller stops, or an organizer stops the run.
 - A collision or other invalidation applies only to that attempt; other attempts remain eligible.
-- Teams may request a score review immediately after their run. Organizers review the recorded telemetry and timing result.
+- Teams may request a score review immediately after their run. Organizers review the official race-monitor result and timing display.
 
 ## Safety and conduct
 
@@ -83,8 +83,7 @@ These items make the rules enforceable and the event repeatable:
 1. Keep the public `v1` branch unchanged. Work on V1.1 in a separate branch and keep the release pinned for every team.
 2. Put the hidden Stage 3 map, route, and launch configuration in an organizer-only location. Do not ship them in the public student repository or expose them through a `/map` topic/service during the scored run.
 3. Provide one official launcher per stage and reset the simulator, start pose, lap timer, collision counter, and ROS graph between attempts.
-4. Record `/scan`, `/ego_racecar/odom`, `/drive`, collision/lap topics, team ID, and controller hash for every scored run.
-5. Rehearse the full Stage 3 and physical-final procedures, including time limits, stop behavior, scoring review, and emergency stop, before competition day.
+4. Rehearse the full Stage 3 and physical-final procedures, including time limits, stop behavior, scoring review, and emergency stop, before competition day.
 
 ## Decisions to confirm before publishing as official
 

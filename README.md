@@ -67,15 +67,6 @@ Run the interface smoke test while the simulator is active:
 ./scripts/smoke_test.sh
 ```
 
-Organizers can record an official simulator run, without recording the map topic,
-with a team ID and controller revision:
-
-```bash
-./scripts/record_run.sh TEAM_ID CONTROLLER_REVISION
-```
-
-Run bags and metadata are saved under the ignored `run_logs/` directory.
-
 ### Terminal 2: PS5 teleoperation (optional)
 
 With the simulator running, start manual teleoperation:
@@ -150,7 +141,6 @@ above so every student uses the same simulator version.
 ├── scripts/
 │   ├── launch_ps5_teleop.sh
 │   ├── launch_sim.sh
-│   ├── record_run.sh
 │   ├── setup_workspace.sh
 │   ├── smoke_test.sh
 │   └── stop_car.sh
