@@ -117,7 +117,7 @@ a pose on `/initialpose`.
 
 ## Student controller package and submission guide
 
-The draft V1.1 guide for creating a Python ROS 2 controller package, building and testing it with the simulator, and submitting the exact version is in [docs/CONTROLLER_SUBMISSION_GUIDE.md](docs/CONTROLLER_SUBMISSION_GUIDE.md).
+The draft V1.1 guide for creating a Python ROS 2 controller package, building and testing it with the simulator, and submitting the exact version is in [docs/CONTROLLER_SUBMISSION_GUIDE.md](docs/CONTROLLER_SUBMISSION_GUIDE.md). It also links to the official F1TENTH labs repository for optional algorithm examples.
 
 ## Tested revisions
 
@@ -141,6 +141,7 @@ above so every student uses the same simulator version.
 ├── THIRD_PARTY_NOTICES.md
 ├── docs/
 │   ├── COMPETITION_RULES_DRAFT.md
+│   ├── CONTROLLER_SUBMISSION_GUIDE.md
 │   └── INSTALL.md
 ├── scripts/
 │   ├── launch_ps5_teleop.sh
