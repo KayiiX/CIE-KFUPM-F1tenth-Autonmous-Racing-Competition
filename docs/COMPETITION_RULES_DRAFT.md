@@ -1,0 +1,91 @@
+# CIE-KFUPM F1TENTH Competition — Proposed Stages and Rules
+
+**Status:** Organizer draft for the first edition. Adopt only after organizer review.  
+**Repository baseline:** frozen `v1` branch, commit `648778c`.  
+**Development:** stage V1.1 changes on a separate branch; do not change the student-facing V1 release.
+
+This document turns the proposed competition format into a concrete, reviewable default. Dates and venue details are announced separately. The intended field is approximately 20–30 teams, with about 3–4 weeks between major stages for teams to improve their controllers.
+
+## Competition stages
+
+### Stage 0 — Workshop and simulator onboarding (unscored)
+
+All teams install and run the same V1 environment. Organizers demonstrate the simulator, ROS topics, the race dashboard, teleoperation, and the Pure Pursuit starter. Teams may practice and modify their controller in the practice workspace.
+
+This stage is for learning and technical checks; it does not affect ranking.
+
+### Stage 1 — Clean-lap qualification (simulation)
+
+- Track: the simple Levine course supplied in the starter environment.
+- Each team receives up to **three official attempts**.
+- An attempt is a maximum of **three timed laps**, following the out-lap behavior of the official race monitor.
+- A team qualifies by completing all three laps with **zero recorded collisions** in at least one attempt.
+- Teams that qualify advance to Stage 2.
+
+### Stage 2 — Known-track time trial (simulation)
+
+- Track: the announced Levine obstacle course, initially proposed as `levine_blocked`.
+- The map and official route are supplied before the stage.
+- Each team receives up to **three official attempts** of three timed laps.
+- A collision invalidates that attempt; it does not invalidate a separate clean attempt.
+- The team's result is the fastest total time across its valid three-lap attempts.
+- The **top eight teams** advance to Stage 3. Ties are resolved by the fastest single lap, then by a supervised rerun.
+
+### Stage 3 — Hidden-track adaptability (simulation)
+
+- Organizers use a track that is not included in the public student repository before the event.
+- The map, route, and track-specific coordinates are not provided. Teams may use the permitted runtime sensor topics listed below.
+- Teams receive a **10-minute setup and inspection period with the car stationary**. No autonomous driving or source/configuration changes are allowed after the hidden track is revealed.
+- Each team receives up to **two official attempts**, each capped at **five minutes** and three timed laps.
+- Any collision invalidates that attempt. A valid result requires three completed timed laps and zero collisions.
+- The **top two valid finishers**, ranked by their fastest three-lap time, advance to the physical final. If fewer than two teams achieve a valid run, the organizers may advance fewer than two.
+- Ties are resolved by fastest single lap, followed by a supervised rerun.
+
+### Final — Supervised real-car demonstration
+
+- The two finalists run their submitted controller on the organizer-provided F1TENTH car and the same rehearsed physical course.
+- The organizers announce a common speed cap and run procedure before the final. The car, battery condition, start pose, and controller interface are kept as consistent as practical between teams.
+- Each finalist receives up to **two attempts** of three laps.
+- Any contact, marshal intervention, or emergency-stop activation invalidates that attempt.
+- The fastest clean three-lap run wins. If neither finalist completes a clean run, the team completing more laps without intervention places higher; a tie is resolved by a supervised rerun.
+- A safety marshal has authority to stop a run at any time.
+
+## Controller interface and permitted information
+
+- Controllers receive `/scan` (`sensor_msgs/msg/LaserScan`) and `/ego_racecar/odom` (`nav_msgs/msg/Odometry`).
+- Controllers publish driving commands to `/drive` (`ackermann_msgs/msg/AckermannDriveStamped`).
+- Only one team controller may publish to `/drive` during an official attempt. Teleoperation and starter controllers must be stopped.
+- Teams may modify their controller package. They may not modify the simulator, race monitor, collision detection, official launch configuration, maps, or scoring code used for an official run.
+- Stages 1 and 2 may use the officially released map and route.
+- Stage 3 controllers may use live sensor/odometry data but may not use a hidden map, hidden route, track-specific waypoint file, or other track-specific coordinates. These assets must be withheld from the public student checkout until after the challenge.
+- No human may send driving commands, reposition the car, or change controller code/configuration during a scored attempt.
+
+## Run administration and scoring
+
+- Organizers reset the simulator, starting pose, lap timer, and collision counter before each official attempt.
+- The official race monitor is the scoring source for simulator lap times, completed laps, and collisions. Organizers record the team identifier, controller version/hash, attempt number, result, and any intervention.
+- A run ends when the attempt limit is reached, three timed laps are complete, the controller stops, or an organizer stops the run.
+- A collision or other invalidation applies only to that attempt; other attempts remain eligible.
+- Teams may request a score review immediately after their run. Organizers review the recorded telemetry and timing result.
+
+## Safety and conduct
+
+- The simulator stages are run only in the competition's pinned environment.
+- The organizer confirms the controller, speed cap, emergency stop, physical course, and marshal procedure in a full rehearsal before the real-car final.
+- For the physical final, the car remains inside a controlled course area. Nobody enters the course while the car is moving.
+- The marshal may stop a car for unsafe behavior, loss of control, equipment problems, or risk to people or property.
+- The official speed cap and physical emergency-stop procedure take precedence over controller settings.
+
+## Organizer implementation checklist
+
+These items make the rules enforceable and the event repeatable:
+
+1. Keep the public `v1` branch unchanged. Work on V1.1 in a separate branch and keep the release pinned for every team.
+2. Put the hidden Stage 3 map, route, and launch configuration in an organizer-only location. Do not ship them in the public student repository or expose them through a `/map` topic/service during the scored run.
+3. Provide one official launcher per stage and reset the simulator, start pose, lap timer, collision counter, and ROS graph between attempts.
+4. Record `/scan`, `/ego_racecar/odom`, `/drive`, collision/lap topics, team ID, and controller hash for every scored run.
+5. Rehearse the full Stage 3 and physical-final procedures, including time limits, stop behavior, scoring review, and emergency stop, before competition day.
+
+## Decisions to confirm before publishing as official
+
+The defaults above are **three attempts** for Stages 1 and 2, **two attempts** for Stage 3 and the final, a **five-minute** Stage 3 attempt limit, and **eight** Stage 3 qualifiers from Stage 2. Organizers should confirm these operational limits and the exact maps before declaring the rules final.
