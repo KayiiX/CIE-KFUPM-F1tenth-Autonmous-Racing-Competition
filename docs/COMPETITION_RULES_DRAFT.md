@@ -29,19 +29,18 @@ This stage is for learning and technical checks; it does not affect ranking.
 - Each team receives up to **three official attempts** of three timed laps.
 - A collision invalidates that attempt; it does not invalidate a separate clean attempt.
 - The team's result is the fastest total time across its valid three-lap attempts.
-- The **top eight teams** advance to Stage 3. Ties are resolved by the fastest single lap, then by a supervised rerun.
+- The **qualified teams** advance to Stage 3. Ties are resolved by the fastest single lap, then by a supervised rerun.
 
 ### Stage 3 — Hidden-track adaptability (simulation)
 
-- Organizers use a track that is not included in the public student repository before the event.
 - The map, route, and track-specific coordinates are not provided. Teams may use the permitted runtime sensor topics listed below.
-- Teams receive a **10-minute setup and inspection period with the car stationary**. No autonomous driving or source/configuration changes are allowed after the hidden track is revealed.
+- Teams receive a **10-minute setup and inspection period with the car stationary**. 
 - Each team receives up to **two official attempts**, each capped at **five minutes** and three timed laps.
 - Any collision invalidates that attempt. A valid result requires three completed timed laps and zero collisions.
-- The **top two valid finishers**, ranked by their fastest three-lap time, advance to the physical final. If fewer than two teams achieve a valid run, the organizers may advance fewer than two.
+- The **top two valid finishers**, ranked by their fastest three-lap time, advance to the physical final. If fewer than two teams achieve a valid run, more than two may advance.
 - Ties are resolved by fastest single lap, followed by a supervised rerun.
 
-### Final — Supervised real-car demonstration
+### Final — Supervised real-car demonstration (TBD)
 
 - The two finalists run their submitted controller on the organizer-provided F1TENTH car and the same rehearsed physical course.
 - The organizers announce a common speed cap and run procedure before the final. The car, battery condition, start pose, and controller interface are kept as consistent as practical between teams.
@@ -75,16 +74,3 @@ This stage is for learning and technical checks; it does not affect ranking.
 - For the physical final, the car remains inside a controlled course area. Nobody enters the course while the car is moving.
 - The marshal may stop a car for unsafe behavior, loss of control, equipment problems, or risk to people or property.
 - The official speed cap and physical emergency-stop procedure take precedence over controller settings.
-
-## Organizer implementation checklist
-
-These items make the rules enforceable and the event repeatable:
-
-1. Keep the public `v1` branch unchanged. Work on V1.1 in a separate branch and keep the release pinned for every team.
-2. Put the hidden Stage 3 map, route, and launch configuration in an organizer-only location. Do not ship them in the public student repository or expose them through a `/map` topic/service during the scored run.
-3. Provide one official launcher per stage and reset the simulator, start pose, lap timer, collision counter, and ROS graph between attempts.
-4. Rehearse the full Stage 3 and physical-final procedures, including time limits, stop behavior, scoring review, and emergency stop, before competition day.
-
-## Decisions to confirm before publishing as official
-
-The defaults above are **three attempts** for Stages 1 and 2, **two attempts** for Stage 3 and the final, a **five-minute** Stage 3 attempt limit, and **eight** Stage 3 qualifiers from Stage 2. Organizers should confirm these operational limits and the exact maps before declaring the rules final.
