@@ -36,7 +36,7 @@ cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 ```
 
 The `v1.1` branch is the current competition version. The `v1` branch remains
-available as the frozen first-edition baseline. The competition stages and
+available as the earlier first-edition version. The competition stages and
 rules are in [docs/COMPETITION_RULES.md](docs/COMPETITION_RULES.md).
 
 ### Terminal 1: simulator and RViz

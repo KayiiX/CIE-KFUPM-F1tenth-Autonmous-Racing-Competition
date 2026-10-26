@@ -1,7 +1,7 @@
 # CIE-KFUPM F1TENTH Competition Rules
 
 **Version:** V1.1.  
-**Simulator baseline:** frozen V1 environment.
+**Competition version:** V1.1.
 
 This document defines the competition format for the first edition. Dates and venue details are announced separately. The intended field is approximately 20–30 teams, with about 3–4 weeks between major stages for teams to improve their controllers.
 
