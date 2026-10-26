@@ -1,7 +1,5 @@
 # Student Controller Package and Submission Guide
 
-**Status:** Organizer draft for V1.1. Follow the official event announcement if it changes any of these instructions.
-
 This guide shows how to create a ROS 2 Python package, connect it to the competition simulator, and submit the version organizers should build. Your controller is a separate package. Do not edit the simulator package to add your controller.
 
 ## 1. The required ROS interface

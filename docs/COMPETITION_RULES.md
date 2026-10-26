@@ -1,16 +1,15 @@
-# CIE-KFUPM F1TENTH Competition — Proposed Stages and Rules
+# CIE-KFUPM F1TENTH Competition Rules
 
-**Status:** Organizer draft for the first edition. Adopt only after organizer review.  
-**Repository baseline:** frozen `v1` branch, commit `648778c`.  
-**Development:** stage V1.1 changes on a separate branch; do not change the student-facing V1 release.
+**Version:** V1.1.  
+**Simulator baseline:** frozen V1 environment.
 
-This document turns the proposed competition format into a concrete, reviewable default. Dates and venue details are announced separately. The intended field is approximately 20–30 teams, with about 3–4 weeks between major stages for teams to improve their controllers.
+This document defines the competition format for the first edition. Dates and venue details are announced separately. The intended field is approximately 20–30 teams, with about 3–4 weeks between major stages for teams to improve their controllers.
 
 ## Competition stages
 
 ### Stage 0 — Workshop and simulator onboarding (unscored)
 
-All teams install and run the same V1 environment. Organizers demonstrate the simulator, ROS topics, the race dashboard, and PS5 teleoperation. Teams may practice and modify their controller in the practice workspace.
+All teams install and run the same V1.1 environment. Organizers demonstrate the simulator, ROS topics, the race dashboard, and PS5 teleoperation. Teams may practice and modify their controller in the practice workspace.
 
 This stage is for learning and technical checks; it does not affect ranking.
 
@@ -24,7 +23,7 @@ This stage is for learning and technical checks; it does not affect ranking.
 
 ### Stage 2 — Known-track time trial (simulation)
 
-- Track: the announced Levine obstacle course, initially proposed as `levine_blocked`.
+- Track: the announced Levine obstacle course,  `levine_blocked`.
 - The map and official route are supplied before the stage.
 - Each team receives up to **three official attempts** of three timed laps.
 - A collision invalidates that attempt; it does not invalidate a separate clean attempt.

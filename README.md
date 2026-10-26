@@ -28,18 +28,16 @@ First install ROS 2 Jazzy Desktop and the prerequisites in
 [docs/INSTALL.md](docs/INSTALL.md). Then:
 
 ```bash
-git clone --branch v1 --single-branch \
+git clone --branch v1.1 --single-branch \
   https://github.com/KayiiX/CIE-KFUPM-F1tenth-Autonomous-Racing-Competition.git
 cd CIE-KFUPM-F1tenth-Autonomous-Racing-Competition
 
 ./scripts/setup_workspace.sh
 ```
 
-The `v1` branch is the frozen first-edition competition environment. Students
-should remain on this branch so later development on `main` does not change
-their simulator during the competition. The proposed event stages and rules
-are in [docs/COMPETITION_RULES_DRAFT.md](docs/COMPETITION_RULES_DRAFT.md); that
-document is an organizer draft on the V1.1 branch, not part of the frozen V1 release.
+The `v1.1` branch is the current competition version. The `v1` branch remains
+available as the frozen first-edition baseline. The competition stages and
+rules are in [docs/COMPETITION_RULES.md](docs/COMPETITION_RULES.md).
 
 ### Terminal 1: simulator and RViz
 
@@ -117,7 +115,7 @@ a pose on `/initialpose`.
 
 ## Student controller package and submission guide
 
-The draft V1.1 guide for creating a Python ROS 2 controller package, building and testing it with the simulator, and submitting the exact version is in [docs/CONTROLLER_SUBMISSION_GUIDE.md](docs/CONTROLLER_SUBMISSION_GUIDE.md). It also links to the official F1TENTH labs repository for optional algorithm examples.
+The [controller package and submission guide](docs/CONTROLLER_SUBMISSION_GUIDE.md) explains how to create, build, test, and submit a Python ROS 2 controller. It also links to the official F1TENTH labs for algorithm examples.
 
 ## Tested revisions
 
@@ -140,7 +138,7 @@ above so every student uses the same simulator version.
 ├── README.md
 ├── THIRD_PARTY_NOTICES.md
 ├── docs/
-│   ├── COMPETITION_RULES_DRAFT.md
+│   ├── COMPETITION_RULES.md
 │   ├── CONTROLLER_SUBMISSION_GUIDE.md
 │   └── INSTALL.md
 ├── scripts/
